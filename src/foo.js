@@ -1,0 +1,3 @@
+module.exports = function(){
+    //Some implementation here...
+}
