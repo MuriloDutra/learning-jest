@@ -35,7 +35,7 @@ test('Mock instances', () => {
     console.log('Mock instances: ', myMock.mock.instances)
 })
 
-/*
+
 test('.mock properties', () => {
     //The function was called exactly once
     expect(someMockFunction.mock.calls.length).toBe(1)
@@ -55,7 +55,7 @@ test('.mock properties', () => {
     //The object returned by the first instantiated of this function
     //had a 'name' property whose value was set to 'test'
     expect(someMockFunction.mock.instances[0].name).toBe('test')
-})*/
+})
 
 test('Mock return values', () => {
     const myMock = jest.fn()
@@ -126,4 +126,46 @@ test(`Returning 'this'`, () => {
 
     console.log('myObj: ', myObj.myMethod())
     console.log('otherObj: ', otherObj.myMethod())
+})
+
+test('Giving a name to the mock function', () => {
+    const myMock = jest()
+        .fn()
+        .mockReturnValue('default')
+        .mockImplementation(scalar => 42 + scalar)
+        .mockName('Test - naming a mock function')
+})
+
+test('Custom matcher for mock functions', () => {
+    const myMock = jest.fn()
+
+    //The mock function was called at least once
+    expect(myMock).toHaveBeenCalled()
+
+    //The mock function was called at least once with the specified args
+    expect(myMock).toHaveBeenCalledWith(arg1, arg2)
+
+    //The last call to the mock function was called with the specified args
+    expect(myMock).toHaveBeenLastCalledWith(arg1, arg2)
+
+    //All calls and the name of the mock is written as a snapshot
+    expect(myMock).toMatchSnapshot()
+
+    //The mock function was called at least once
+    expect(myMock.mock.calls.length).toBeGreaterThan(0)
+
+    //The mock function was called at least once with the specified args
+    expect(myMock.mock.calls).toContainEqual([arg1, arg2])
+
+    //The last call to the mock function was called with the specified args
+    expect(myMock.mock.calls[myMock.mock.calls.length] - 1).toEqual([arg1, arg2])
+
+    //The first arg of the last call to the mock function was `42`
+    //(note that there is no sugar helper for this specific of an assertion)
+    expect(myMock.mock.calls[myMock.mock.calls.length - 1][0]).toBe(42)
+
+    //A snapshot will check that a mock was invoked the same number of times,
+    //in the same order, with the same arguments. It will also assert on the name.
+    expect(myMock.mock.calls).toEqual([arg1, arg2])
+    expect(myMock.getMockName()).toBe('a mock name')
 })
