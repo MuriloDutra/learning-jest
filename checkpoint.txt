@@ -1,1 +1,1 @@
-https://jestjs.io/docs/en/mock-functions#mock-names
+https://jestjs.io/docs/en/snapshot-testing
