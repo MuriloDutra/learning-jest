@@ -10,3 +10,11 @@ exports[`renders correctly 1`] = `
   Facebook
 </a>
 `;
+
+exports[`will fail every time 1`] = `
+Object {
+  "createdAt": Any<Date>,
+  "id": Any<Number>,
+  "name": "LeBron James",
+}
+`;
