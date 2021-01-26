@@ -1,1 +1,1 @@
-https://jestjs.io/docs/en/snapshot-testing#updating-snapshots
+https://jestjs.io/docs/en/timer-mocks
