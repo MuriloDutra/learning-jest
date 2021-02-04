@@ -1,1 +1,1 @@
-https://jestjs.io/docs/en/timer-mocks
+https://jestjs.io/docs/en/es6-class-mocks
