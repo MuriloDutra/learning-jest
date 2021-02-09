@@ -1,5 +1,5 @@
 jest.mock('./request')//to tell Jest to use our manual mock.
-import * as user from './user'
+import * as user from '../user'
 
 // The assertion for a promise must be returned.
 it('works with promises', () => {
