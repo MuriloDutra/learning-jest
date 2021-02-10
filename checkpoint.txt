@@ -1,1 +1,1 @@
-https://jestjs.io/docs/en/es6-class-mocks
+https://jestjs.io/docs/en/es6-class-mocks#calling-jestmockdocsenjest-objectjestmockmodulename-factory-options-with-the-module-factory-parameter
