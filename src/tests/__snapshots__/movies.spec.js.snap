@@ -8,7 +8,7 @@ exports[`Favorite Movies Can add a movie 1`] = `
   },
   {
     "rate": null,
-    "title": "Avatar",
+    "title": "Django",
   },
 ]
 `;

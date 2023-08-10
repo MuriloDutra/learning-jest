@@ -12,7 +12,7 @@ describe("Favorite Movies", () => {
   });
 
   test("Can add a movie", () => {
-    movies.add(myMovies, "Avatar");
+    movies.add(myMovies, "Django");
     expect(myMovies).toMatchSnapshot();
   });
 
