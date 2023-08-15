@@ -17,12 +17,18 @@ test("model structure", () => {
 });
 
 describe("record", () => {
-  const heroes = [{ name: "Batman" }, { name: "Superman" }];
+  const heroes = [{ id: 1, name: "Batman" }, { name: "Superman" }];
 
   test("can add data to the collection", () => {
     const model = new Model();
     model.record(heroes);
-    expect(model.$collection).toEqual(heroes);
+    expect(model.$collection).toEqual([
+      heroes[0],
+      {
+        id: expect.any(Number),
+        name: heroes[1].name,
+      },
+    ]);
   });
 
   test("gets called when data is passed to Model's constructor", () => {
@@ -50,5 +56,19 @@ describe("all", () => {
     data[0].name = "Joker";
 
     expect(model.$collection[0].name).toBe("Batman");
+  });
+});
+
+describe("find", () => {
+  const heroes = [{ id: 1, name: "Batman" }, { name: "Black Panther" }];
+
+  test("returns null if nothing matches", () => {
+    const model = new Model();
+    expect(model.find(1)).toEqual(null);
+  });
+
+  test("find returns a matching entry", () => {
+    const model = new Model(heroes);
+    expect(model.find(1)).toEqual(heroes[0]);
   });
 });
