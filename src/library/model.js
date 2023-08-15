@@ -21,12 +21,25 @@ export default class Model {
     return this.$collection.map((entry) => Object.assign({}, entry));
   }
 
-  find(value) {
+  find(key) {
     const primaryKey = "id";
-    const entry = this.$collection.find((entry) => entry[primaryKey] === value);
+    const entry = this.$collection.find((entry) => entry[primaryKey] === key);
 
     return entry ? Object.assign({}, entry) : null;
   }
 
-  update() {}
+  update(key, data) {
+    const primaryKey = "id";
+    const index = this.$collection.findIndex(
+      (entry) => entry[primaryKey] === key
+    );
+
+    if (index < 0) return false;
+
+    this.$collection.splice(
+      index,
+      1,
+      Object.assign(this.$collection[index], data)
+    );
+  }
 }
