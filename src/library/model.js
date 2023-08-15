@@ -11,7 +11,9 @@ export default class Model {
     this.$collection.push(...data);
   }
 
-  all() {}
+  all() {
+    return this.$collection.map((entry) => Object.assign({}, entry));
+  }
 
   find() {}
 
